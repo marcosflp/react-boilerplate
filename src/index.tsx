@@ -1,16 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from "react-router-dom";
+import { ApolloProvider } from "@apollo/client";
 
+import client from "./lib/graphQl/apolloClient";
 import './static/styles/index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 
+
 ReactDOM.render(
   <React.StrictMode>
-      <BrowserRouter>
-          <App />
-      </BrowserRouter>
+      <ApolloProvider client={client}>
+          <BrowserRouter>
+              <App />
+          </BrowserRouter>
+      </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

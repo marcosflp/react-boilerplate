@@ -1,5 +1,7 @@
 import React from 'react';
+import * as R from 'ramda';
 import { Routes, Route, Link } from 'react-router-dom';
+import { gql, useQuery } from "@apollo/client";
 
 const Menu = () => (
     <>
@@ -15,12 +17,31 @@ const Home = () => (
     </>
 )
 
-const About = () => (
-    <div>
-        <h2>About page</h2>
-        <Menu />
-    </div>
-)
+const About = () => {
+    const { data, loading } = useQuery(GET_RATES_QUERY)
+
+    console.log(data)
+
+    return (
+        <div>
+            <h2>About page</h2>
+            <Menu />
+
+            <h3>Data</h3>
+            <div>
+                {loading ? ("Loading") : (
+                    <>
+                        {R.map((rate) => (
+                            <div key={rate}>
+                                {rate.currency}
+                            </div>
+                        ), data.rates)}
+                    </>
+                )}
+            </div>
+        </div>
+    )
+}
 
 const App = () => {
   return (
@@ -34,5 +55,13 @@ const App = () => {
     </div>
   );
 }
+
+const GET_RATES_QUERY = gql`
+  query GetRates {
+    rates(currency: "USD") {
+      currency
+    }
+  }
+`
 
 export default App;
