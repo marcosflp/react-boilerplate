@@ -1,7 +1,7 @@
 import React from 'react';
 import * as R from 'ramda';
 import { Routes, Route, Link } from 'react-router-dom';
-import { gql, useQuery } from "@apollo/client";
+import { gql, useQuery } from '@apollo/client';
 import styled from 'styled-components';
 
 const Title = styled.h1`
@@ -32,7 +32,7 @@ const MenuItem = styled.button`
   color: #fff;
   cursor: pointer;
   display: inline-block;
-  font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-family: Inter, -apple-system, system-ui, 'Segoe UI', Helvetica, Arial, sans-serif;
   font-size: 15px;
   font-weight: 500;
   height: 50px;
@@ -45,25 +45,26 @@ const MenuItem = styled.button`
   text-align: center;
   text-decoration: none;
   transform: translate3d(0, 0, 0);
-  transition: all .3s;
+  transition: all 0.3s;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: top;
   white-space: nowrap;
-  
+
   &:hover {
     background-color: #1366d6;
-      box-shadow: rgba(0, 0, 0, .05) 0 5px 30px, rgba(0, 0, 0, .05) 0 1px 4px;
-      opacity: 1;
-      transform: translateY(0);
-      transition-duration: .35s;
+    box-shadow: rgba(0, 0, 0, 0.05) 0 5px 30px, rgba(0, 0, 0, 0.05) 0 1px 4px;
+    opacity: 1;
+    transform: translateY(0);
+    transition-duration: 0.35s;
   }
-  
+
   &:active {
-    box-shadow: rgba(0, 0, 0, .1) 0 3px 6px 0, rgba(0, 0, 0, .1) 0 0 10px 0, rgba(0, 0, 0, .1) 0 1px 4px -1px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 3px 6px 0, rgba(0, 0, 0, 0.1) 0 0 10px 0,
+      rgba(0, 0, 0, 0.1) 0 1px 4px -1px;
     transform: translateY(2px);
-    transition-duration: .35s;
+    transition-duration: 0.35s;
   }
 
   @media (min-width: 768px) {
@@ -71,56 +72,67 @@ const MenuItem = styled.button`
       padding: 14px 22px;
       width: 176px;
     }
+  }
+`;
+
+function Menu() {
+  return (
+    <>
+      <Link to="/">
+        <MenuItem>Home</MenuItem>
+      </Link>
+      <Link to="/about">
+        <MenuItem>About</MenuItem>
+      </Link>
+    </>
+  );
 }
-`
 
-const Menu = () => (
+function Home() {
+  return (
     <>
-        <Link to="/"><MenuItem>Home page</MenuItem></Link>
-        <Link to="/about"><MenuItem>About page</MenuItem></Link>
+      <Wrapper>
+        <Menu />
+      </Wrapper>
+
+      <Container>
+        <Title>Home</Title>
+      </Container>
     </>
-)
+  );
+}
 
-const Home = () => (
-    <>
-        <Wrapper>
-            <Menu />
-        </Wrapper>
+function About() {
+  const { data, loading } = useQuery(GET_RATES_QUERY);
 
-        <Container>
-            <Title>Home page</Title>
-        </Container>
-    </>
-)
+  return (
+    <div>
+      <Wrapper>
+        <Menu />
+      </Wrapper>
 
-const About = () => {
-    const { data, loading } = useQuery(GET_RATES_QUERY)
-
-    return (
+      <Container>
+        <Title>About</Title>
         <div>
-            <Wrapper>
-                <Menu />
-            </Wrapper>
-
-            <Container>
-                <Title>About page</Title>
-                <div>
-                    {loading ? ("Loading") : (
-                        <>
-                            {R.map((rate) => (
-                                <div key={rate.currency}>
-                                    {rate.currency}
-                                </div>
-                            ), data.rates)}
-                        </>
-                    )}
-                </div>
-            </Container>
+          {loading ? (
+            'Loading'
+          ) : (
+            <>
+              {R.map(
+                (rate) => (
+                  <div key={rate.currency}>{rate.currency}</div>
+                ),
+                data.rates,
+              )}
+            </>
+          )}
         </div>
-    )
+      </Container>
+    </div>
+  );
 }
 
-const App = () => {
+function App() {
   return (
     <div className="App">
       <Routes>
@@ -137,6 +149,6 @@ const GET_RATES_QUERY = gql`
       currency
     }
   }
-`
+`;
 
 export default App;
