@@ -2,12 +2,6 @@
   "name": "react-boilerplate",
   "description": "A React boilerplate project",
   "keywords": ["typescript", "react"],
-  "formation": {
-    "app": {
-      "quantity": 1,
-      "size": "free"
-    }
-  },
   "addons": [
     {
       "plan": "papertrail:choklad"
