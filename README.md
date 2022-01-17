@@ -2,9 +2,11 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
 ## Requirements
 - node v16.13.2
 - yarn
+
 
 ## Available packages
 
@@ -17,6 +19,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Styled components
 - Eslint
 - Prettier
+
 
 ## Setup and Run
 
@@ -37,3 +40,8 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
+
+
+## Deployment
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
