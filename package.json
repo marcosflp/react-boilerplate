@@ -2,6 +2,9 @@
   "name": "react-boilerplate",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "16.13.2"
+  },
   "dependencies": {
     "@apollo/client": "^3.5.7",
     "@testing-library/jest-dom": "^5.14.1",
