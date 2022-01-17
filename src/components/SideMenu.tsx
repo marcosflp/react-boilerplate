@@ -19,14 +19,6 @@ function SideMenu() {
       >
         Home
       </Menu.Item>
-      <Menu.Item
-        name="Currencies"
-        active={activeItem === 'currencies'}
-        onClick={() => {
-          setActiveItem('currencies');
-          navigate('/currencies');
-        }}
-      />
     </Menu>
   );
 }

@@ -2,6 +2,12 @@
   "name": "react-boilerplate",
   "description": "A React boilerplate project",
   "keywords": ["typescript", "react"],
+  "env": {
+    "BACKEND_API_URL": {
+      "description": "Backend API URL",
+      "value": "Example: https://project-name.herokuapp.com/graphql"
+    }
+  },
   "addons": [
     {
       "plan": "papertrail:choklad"

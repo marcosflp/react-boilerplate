@@ -1,14 +1,28 @@
 import React from 'react';
-import { Header } from 'semantic-ui-react';
+import { gql, useQuery } from '@apollo/client';
+import { Header, Message } from 'semantic-ui-react';
 
 import Container from './lib/ui/Container';
 
 function Home() {
+  const { data, loading } = useQuery(HELLO_QUERY);
+
   return (
     <Container>
       <Header>Home</Header>
+
+      <Message>
+        <Message.Header>BackendAPI says:</Message.Header>
+        {loading ? <p>loading</p> : <p>{data.hello}</p>}
+      </Message>
     </Container>
   );
 }
+
+const HELLO_QUERY = gql`
+  query {
+    hello
+  }
+`;
 
 export default Home;
