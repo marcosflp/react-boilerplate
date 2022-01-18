@@ -13,7 +13,7 @@ function Home() {
 
       <Message>
         <Message.Header>BackendAPI says:</Message.Header>
-        {loading ? <p>loading</p> : <p>{data.hello}</p>}
+        {loading ? <p>loading</p> : <p>{data ? data.hello : 'Error tyring to call the backend'}</p>}
       </Message>
     </Container>
   );
